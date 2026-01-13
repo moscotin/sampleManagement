@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('samples', SampleController::class);
     Route::get('samples/{sample}/fabrication-steps/create', [FabricationStepController::class, 'create'])->name('fabrication-steps.create');
     Route::post('samples/{sample}/fabrication-steps', [FabricationStepController::class, 'store'])->name('fabrication-steps.store');
+    Route::get('fabrication-steps/{fabricationStep}/edit', [FabricationStepController::class, 'edit'])->name('fabrication-steps.edit');
+    Route::put('fabrication-steps/{fabricationStep}', [FabricationStepController::class, 'update'])->name('fabrication-steps.update');
     Route::delete('fabrication-steps/{fabricationStep}', [FabricationStepController::class, 'destroy'])->name('fabrication-steps.destroy');
 });
 

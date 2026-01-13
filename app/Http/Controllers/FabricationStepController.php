@@ -31,6 +31,26 @@ class FabricationStepController extends Controller
         return redirect()->route('samples.show', $sample)->with('success', 'Fabrication step added successfully.');
     }
 
+    public function edit(FabricationStep $fabricationStep)
+    {
+        return view('fabrication-steps.edit', compact('fabricationStep'));
+    }
+
+    public function update(Request $request, FabricationStep $fabricationStep)
+    {
+        $validated = $request->validate([
+            'activity_name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $fabricationStep->update([
+            'activity_name' => $validated['activity_name'],
+            'description' => $validated['description'] ?? null,
+        ]);
+
+        return redirect()->route('samples.show', $fabricationStep->sample)->with('success', 'Fabrication step updated successfully.');
+    }
+
     public function destroy(FabricationStep $fabricationStep)
     {
         $sampleId = $fabricationStep->sample_id;
