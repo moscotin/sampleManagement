@@ -70,6 +70,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $step->activity_name }}</td>
                                         <td class="px-6 py-4">{{ Str::limit($step->description, 50) }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <a href="{{ route('fabrication-steps.edit', $step) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
                                             <form action="{{ route('fabrication-steps.destroy', $step) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
