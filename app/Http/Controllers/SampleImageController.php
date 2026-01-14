@@ -17,7 +17,8 @@ class SampleImageController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $extension = $image->guessExtension();
+                $filename = time() . '_' . uniqid() . '.' . $extension;
                 $path = $image->storeAs('sample_images', $filename, 'public');
 
                 SampleImage::create([
@@ -36,9 +37,10 @@ class SampleImageController extends Controller
 
     public function destroy(SampleImage $sampleImage)
     {
+        $sample = $sampleImage->sample;
         Storage::disk('public')->delete($sampleImage->path);
         $sampleImage->delete();
 
-        return redirect()->route('samples.show', $sampleImage->sample_id)->with('success', 'Image deleted successfully.');
+        return redirect()->route('samples.show', $sample)->with('success', 'Image deleted successfully.');
     }
 }

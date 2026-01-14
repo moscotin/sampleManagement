@@ -100,7 +100,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
-                    <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[90vh] object-contain" onclick="event.stopPropagation()">
+                    <img id="lightbox-image" src="" alt="Full size image" class="max-w-full max-h-[90vh] object-contain" onclick="event.stopPropagation()">
                     <p id="lightbox-caption" class="text-white text-center mt-2"></p>
                 </div>
             </div>
