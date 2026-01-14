@@ -35,7 +35,7 @@ class SampleController extends Controller
 
     public function show(Sample $sample)
     {
-        $sample->load(['wafer', 'fabricationSteps.user']);
+        $sample->load(['wafer', 'fabricationSteps.user', 'images']);
         return view('samples.show', compact('sample'));
     }
 
