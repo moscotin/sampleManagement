@@ -19,4 +19,9 @@ class Sample extends Model
     {
         return $this->hasMany(FabricationStep::class);
     }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(SampleImage::class);
+    }
 }

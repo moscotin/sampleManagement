@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('wafers', WaferController::class);
     Route::resource('samples', SampleController::class);
+    Route::post('samples/{sample}/images', [App\Http\Controllers\SampleImageController::class, 'store'])->name('sample-images.store');
+    Route::delete('sample-images/{sampleImage}', [App\Http\Controllers\SampleImageController::class, 'destroy'])->name('sample-images.destroy');
     Route::get('samples/{sample}/fabrication-steps/create', [FabricationStepController::class, 'create'])->name('fabrication-steps.create');
     Route::post('samples/{sample}/fabrication-steps', [FabricationStepController::class, 'store'])->name('fabrication-steps.store');
     Route::get('fabrication-steps/{fabricationStep}/edit', [FabricationStepController::class, 'edit'])->name('fabrication-steps.edit');
