@@ -176,22 +176,22 @@ function publicationUrlLabel(?string $url): string
                     <h5 class="card-title">Carbon Nanomaterials Laboratory</h5>
                     <p class="card-title"><strong>RESEARCH FELLOW <br /> Sep 2018 – Oct 2022 | MIPT</strong></p>
                     <p class=" text-start">Experimental work on graphene and carbon nanotube based FET detectors in THz
-                        range irradiation. Clean room fabrication of experimental devices using methods of
+                        range irradiation. Clean room fabrication of experimental devices using
                         maskless laser lithography, e-beam lithography, thermal evaporation and
                         plasma-chemical etching.</p>
                     <hr />
                     <h5 class="card-title">Quantum Detectors Laboratory</h5>
                     <p class="card-title"><strong>ENGINEER <br /> Jun 2015 – Jun 2021 | MSPU</strong></p>
                     <p class=" text-start">Development of LabView and web-based software for experimental data acquisition
-                        and processing. Experimental device fabrication using methods of masked
+                        and processing. Experimental device fabrication using masked
                         photolithography, e-beam lithography, scanning electron microscopy, e-beam
                         evaporation and plasma-chemical etching.</p>
                     <hr />
                     <h5 class="card-title">Laboratory of Scientific Data Integration and Visualization</h5>
                     <p class="card-title"><strong>JUNIOR RESEARCHER <br /> Sep 2013 – Jun 2015 | KI</strong></p>
-                    <p class=" text-start">Implementing a Java project on weather data acquisition, interpretation and
-                        visualization. Developed a web-service with API for data communication between a
-                        noSQL database and a front-end vizualization interface.</p>
+                    <p class=" text-start">Java project implementation on weather data acquisition, interpretation and
+                        visualization. Development of a web-service with API for data communication between a
+                        noSQL-database and a front-end vizualization interface.</p>
                 </div>
             </div>
         </div>
