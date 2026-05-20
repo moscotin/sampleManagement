@@ -1,9 +1,9 @@
 <?php
 
 $host = '127.0.0.1';
-$db   = 'publications';
-$user = 'root';
-$pass = 'b1e7uK5eB3IM';
+$db   = 'sampleDB';
+$user = 'sample_admin';
+$pass = '456vxFsosl9XvhODlQCQ';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -18,8 +18,70 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-$stmt = $pdo->query('SELECT * FROM moscotin ORDER BY `year` DESC');
+$stmt = $pdo->query("
+    SELECT
+        id,
+        sort_order,
+        publication_type,
+        authors,
+        title,
+        venue,
+        year,
+        volume,
+        issue,
+        pages,
+        url
+    FROM publication
+    ORDER BY sort_order ASC, year DESC, id ASC
+");
 $publications = $stmt->fetchAll();
+
+function h($value): string
+{
+    return htmlspecialchars((string)($value ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function formatPublicationMeta(array $publication): string
+{
+    $html = '';
+
+    if (!empty($publication['venue'])) {
+        $html .= '<i>' . h($publication['venue']) . '</i>';
+    }
+
+    if (!empty($publication['year'])) {
+        $html .= ($html !== '' ? ' ' : '') . h($publication['year']);
+    }
+
+    if (!empty($publication['volume'])) {
+        $html .= ', ' . h($publication['volume']);
+    }
+
+    if (!empty($publication['issue'])) {
+        $html .= ', ' . h($publication['issue']);
+    }
+
+    if (!empty($publication['pages'])) {
+        $html .= ', ' . h($publication['pages']);
+    }
+
+    return $html;
+}
+
+function publicationUrlLabel(?string $url): string
+{
+    $url = trim((string)$url);
+
+    if ($url === '') {
+        return '';
+    }
+
+    if (strpos($url, 'https://doi.org/') === 0 || strpos($url, 'http://doi.org/') === 0) {
+        return 'doi';
+    }
+
+    return 'link';
+}
 
 ?>
 <!DOCTYPE html>
@@ -178,59 +240,79 @@ $publications = $stmt->fetchAll();
             </div>
  */ ?>
 
-            <!--div class="card my-3">
-                <h4 class="card-header">Hobbies</h4>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
+        <!--div class="card my-3">
+            <h4 class="card-header">Hobbies</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
 
-                <img class="w-50 mx-auto card-img-top" src="/img/mipt_logo.jpg" alt="Moscow Institute of Physics and Technology">
-                <div class="card-text text-start">
-                    <ul>
-                        <li>Travelling across the globe</li>
-                        <li>Out-of-the-city cycling</li>
-                        <li>Table tennis</li>
-                        <li>Automotive enthusiast</li>
-                        <li>Drone filming</li>
-                    </ul>
-                </div>
-                    </li>
+            <img class="w-50 mx-auto card-img-top" src="/img/mipt_logo.jpg" alt="Moscow Institute of Physics and Technology">
+            <div class="card-text text-start">
+                <ul>
+                    <li>Travelling across the globe</li>
+                    <li>Out-of-the-city cycling</li>
+                    <li>Table tennis</li>
+                    <li>Automotive enthusiast</li>
+                    <li>Drone filming</li>
                 </ul>
-            </div-->
+            </div>
+                </li>
+            </ul>
+        </div-->
 
-            <!--div class="card my-3">
-                <h4 class="card-header">Social</h4>
-                <img class="w-50 mx-auto card-img-top" src="/img/mipt_logo.jpg" alt="Moscow Institute of Physics and Technology">
-                <div class="card-text text-center mt-2 mb-0">
-                    <a target="_blank" href="https://scholar.google.com/citations?user=v1d0s90AAAAJ&hl=en"><i class="ai h3 ai-google-scholar-square mx-3"></i></a>
-                    <a target="_blank" href="https://www.facebook.com/moscotin"><i class="fa h3 fa-social fa-facebook mx-3"></i></a>
-                    <a target="_blank" href="https://wa.me/79257007176"><i class="fa h3 fa-social fa-whatsapp mx-3"></i></a>
-                    <a target="_blank" href="https://t.me/enottie"><i class="fa h3 fa-social fa-telegram mx-3"></i></a>
-                    <a target="_blank" href="https://www.instagram.com/enottie/"><i class="fa h3 fa-social fa-instagram mx-3"></i></a>
-                </div>
-            </div-->
-        </div>
+        <!--div class="card my-3">
+            <h4 class="card-header">Social</h4>
+            <img class="w-50 mx-auto card-img-top" src="/img/mipt_logo.jpg" alt="Moscow Institute of Physics and Technology">
+            <div class="card-text text-center mt-2 mb-0">
+                <a target="_blank" href="https://scholar.google.com/citations?user=v1d0s90AAAAJ&hl=en"><i class="ai h3 ai-google-scholar-square mx-3"></i></a>
+                <a target="_blank" href="https://www.facebook.com/moscotin"><i class="fa h3 fa-social fa-facebook mx-3"></i></a>
+                <a target="_blank" href="https://wa.me/79257007176"><i class="fa h3 fa-social fa-whatsapp mx-3"></i></a>
+                <a target="_blank" href="https://t.me/enottie"><i class="fa h3 fa-social fa-telegram mx-3"></i></a>
+                <a target="_blank" href="https://www.instagram.com/enottie/"><i class="fa h3 fa-social fa-instagram mx-3"></i></a>
+            </div>
+        </div-->
     </div>
+</div>
 
-    <div class="row mb-4" style="page-break-before: always">
-        <div class="col-lg-12">
-            <div class="card my-3">
-                <h4 class="card-header text-center">Publications</h4>
-                <!--img class="w-50 mx-auto card-img-top" src="/img/mipt_logo.jpg" alt="Moscow Institute of Physics and Technology"-->
-                <div class="card-text text-start mt-3 mx-3">
+<div class="row mb-4" style="page-break-before: always">
+    <div class="col-lg-12">
+        <div class="card my-3">
+            <h4 class="card-header text-center">Publications</h4>
+            <!--img class="w-50 mx-auto card-img-top" src="/img/mipt_logo.jpg" alt="Moscow Institute of Physics and Technology"-->
+            <div class="card-text text-start mt-3 mx-3">
+                <?php if (empty($publications)) { ?>
+                    <p class="text-muted">No publications found.</p>
+                <?php } else { ?>
                     <ol>
-                        <?php foreach ($publications as $publication) { ?>
-                            <li>
-                                <?php //echo '<a target="_blank" class="no-link" href="'.$publication['link'].'">'.$publication['title'].'</a>'; ?>
-<!--                                <p class="my-0"><i>--><?php //echo $publication['authors']; ?><!--</i></p>-->
-<!--                                <p><strong>--><?php //echo $publication['year']; ?><!--, --><?php //echo $publication['publication']; ?><!--</strong><i>--><?php //if($publication['number']) { ?><!--, --><?php //echo $publication['number']; } if($publication['volume']) { ?><!--, --><?php //echo $publication['volume']; } ?><!--, --><?php //echo $publication['publisher']; ?><!--</i></p>-->
-                                <p><?php echo $publication['authors']; ?>; <?php echo $publication['title']; ?>. <i><?php echo $publication['publication'].' '.$publication['year']; ?></i><?php if($publication['number']) { ?>, <?php echo $publication['number']; } if($publication['volume']) { ?>, <?php echo $publication['volume']; } ?>. doi: <?php echo $publication['link']; ?></i></p>
+                        <?php foreach ($publications as $publication) {
+                            $meta = formatPublicationMeta($publication);
+                            $url = trim((string)($publication['url'] ?? ''));
+                            $urlLabel = publicationUrlLabel($url);
+                            ?>
+                            <li class="mb-2">
+                                <p class="my-0">
+                                    <?php echo h($publication['authors']); ?>;
+                                    <strong><?php echo h($publication['title']); ?></strong>.
+                                    <?php if ($meta !== '') { ?>
+                                        <?php echo $meta; ?>.
+                                    <?php } ?>
+                                    <?php if ($url !== '') { ?>
+                                        <?php echo h($urlLabel); ?>:
+                                        <a target="_blank"
+                                           rel="noopener noreferrer"
+                                           class="no-link"
+                                           href="<?php echo h($url); ?>">
+                                            <?php echo h($url); ?>
+                                        </a>
+                                    <?php } ?>
+                                </p>
                             </li>
                         <?php } ?>
                     </ol>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -238,4 +320,3 @@ $publications = $stmt->fetchAll();
 <!-- Hi there! Thank you for being interested in my source code. If you have any questions do not hesitate to contact me by email or Telegram :3 -->
 </body>
 </html>
-
