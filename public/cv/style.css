@@ -15,3 +15,26 @@ body {
     text-decoration: none;
     color: black;
 }
+
+.contact-links a {
+    margin-left: 6px;
+    margin-right: 6px;
+    text-decoration: none;
+}
+
+.contact-links i {
+    font-size: 1.25rem;
+    vertical-align: middle;
+}
+
+.contact-links .ai-orcid {
+    color: #a6ce39;
+}
+
+.contact-links .ai-google-scholar-square {
+    color: #4285f4;
+}
+
+.contact-links .ai-researchgate {
+    color: #00ccbb;
+}

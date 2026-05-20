@@ -104,7 +104,49 @@ function publicationUrlLabel(?string $url): string
 <body>
 <div class="container text-center pt-4">
     <h1 class="display-3">Maxim Moscotin</h1>
-    <p><a target="_blank" class="no-link" href="mailto:maxim.moscotin@ftmc.lt">maxim.moscotin@ftmc.lt</a> | <a class="no-link" href="tel:+37060122021">+370 60122021</a> <a href="https://t.me/enottie" target="_blank"><i class="fa-brands fa-telegram"></i></a> <a class="whatsapp-color" href="https://wa.me/79257007176" target="_blank"><i class="fa-brands fa-whatsapp"></i></a> </p>
+
+    <p class="contact-links">
+        <a target="_blank" class="no-link" href="mailto:maxim.moscotin@ftmc.lt">maxim.moscotin@ftmc.lt</a>
+        |
+        <a class="no-link" href="tel:+37060122021">+370 60122021</a>
+
+        <a href="https://orcid.org/0000-0002-1666-8908"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="ORCID">
+            <i class="ai ai-orcid"></i>
+        </a>
+
+        <a href="https://scholar.google.com/citations?user=v1d0s90AAAAJ&hl=en"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Google Scholar">
+            <i class="ai ai-google-scholar-square"></i>
+        </a>
+
+        <a href="https://www.researchgate.net/profile/Maxim-Moscotin"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="ResearchGate">
+            <i class="ai ai-researchgate"></i>
+        </a>
+
+        <a href="https://t.me/enottie"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Telegram">
+            <i class="fa-brands fa-telegram"></i>
+        </a>
+
+        <a class="whatsapp-color"
+           href="https://wa.me/79257007176"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </p>
+
     <div class="row">
         <div class="col-lg my-3">
             <div class="card">
