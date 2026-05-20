@@ -1,0 +1,17 @@
+/* Global styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+}
+
+/* --------------------------------------- */
+
+/* Class styles */
+.whatsapp-color {
+    color: #25D366;
+}
+
+.no-link {
+    text-decoration: none;
+    color: black;
+}

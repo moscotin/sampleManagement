@@ -32,7 +32,7 @@ $stmt = $pdo->query("
         pages,
         url
     FROM publication
-    ORDER BY sort_order ASC, year DESC, id ASC
+    ORDER BY sort_order, year DESC, id
 ");
 $publications = $stmt->fetchAll();
 
@@ -92,7 +92,7 @@ function publicationUrlLabel(?string $url): string
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,7 +104,7 @@ function publicationUrlLabel(?string $url): string
 <body>
 <div class="container text-center pt-4">
     <h1 class="display-3">Maxim Moscotin</h1>
-    <p><a target="_blank" class="no-link" href="mailto:maxim.moscotin@ftmc.lt">maxim.moscotin@ftmc.lt</a> | <a class="no-link" href="tel:+37060122021">+370 60122021</a> <a target="_blank" href="https://t.me/enottie" target="_blank"><i class="fa-brands fa-telegram"></i></a> <a target="_blank" class="whatsapp-color" href="https://wa.me/79257007176" target="_blank"><i class="fa-brands fa-whatsapp"></i></a> </p>
+    <p><a target="_blank" class="no-link" href="mailto:maxim.moscotin@ftmc.lt">maxim.moscotin@ftmc.lt</a> | <a class="no-link" href="tel:+37060122021">+370 60122021</a> <a href="https://t.me/enottie" target="_blank"><i class="fa-brands fa-telegram"></i></a> <a class="whatsapp-color" href="https://wa.me/79257007176" target="_blank"><i class="fa-brands fa-whatsapp"></i></a> </p>
     <div class="row">
         <div class="col-lg my-3">
             <div class="card">
